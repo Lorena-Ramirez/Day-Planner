@@ -38,6 +38,7 @@
 
       //create time blocks
       for(var i = 0; i < 9; i++){
+
         var row = $("<div>");
         row.addClass("row");
         $(".container").append(row);
@@ -61,15 +62,21 @@
         
         if(hour < 13){
           time.text(hour + ":00 AM");
+          button.attr("button-index",hour);
           hour++;
+
         }
         else{
           time.text(newHour + ":00 PM");
+          button.attr("button-index",hour);
           newHour++;
         }
       }
-
-
+     
+      function storeTodos() {
+      localStorage.setItem("events", );
+}
+      $(".savebtn")
 
     });
 
