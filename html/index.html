@@ -62,21 +62,27 @@
         
         if(hour < 13){
           time.text(hour + ":00 AM");
+          text.attr("data-index",hour);
           button.attr("button-index",hour);
           hour++;
 
         }
         else{
           time.text(newHour + ":00 PM");
+          text.attr("data-index",hour);
           button.attr("button-index",hour);
           newHour++;
         }
       }
      
-      function storeTodos() {
-      localStorage.setItem("events", );
-}
-      $(".savebtn")
+      
+      
+      
+      $(".savebtn").on("click", function(){
+       
+      
+
+      });
 
     });
 
