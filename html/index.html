@@ -35,9 +35,8 @@
       var time = moment().format('HH'); 
       var hour = 9;
       var newHour = 1;
-      console.log(time);
-
       var timeArray = ["09","10","11","12","13","14","15","16","17"];
+
       //create time blocks
       for (var i = 0; i < 9; i++) {
 
@@ -73,22 +72,48 @@
         else {
           time.text(newHour + ":00 PM");
           text.attr("id", newHour);
-          text.addClass("class", timeArray[i]);
+          text.addClass(timeArray[i]);
           button.attr("button-index", newHour);
           newHour++;
         }
       }
 
 
-      //function to check time and change bloc background
-      // function checkTime(){
-      //  time = 
+      //function to check time and change block background
+      function checkTime(){
+        var hour = 9;
+        var newHour = 1;
+        var time = moment().format('HH'); 
+        
+       //loop through each time block
+        for(var i = 0; i < 9; i++){
+         
+          if(hour < 13){
+          var className = $("#"+hour).attr("class").split(' ').pop();
+          
+          if(className < time){
+            //past
+            $("#"+hour).addClass("past");
+          }
 
+          else if(className > time){
+            //future
+            $("#"+hour).addClass("future");
+          }
+          else{
+            //present
+            $("#"+hour).addClass("present");
+          }
+          hour++;
+          }
+          
+          
 
-      // }
-
+        }
+      }
+      
       //Check the time every hour
-      // setInterval(checkTime, 60*60*1000);
+      setInterval(checkTime, 60*60*1000);
 
       //Save local storage to textarea
       var storage = localStorage;
@@ -107,6 +132,10 @@
         //save event description to specific event time
         localStorage.setItem(btnType, description);
       });
+      checkTime();
+      
+
+
     });
 
   </script>
