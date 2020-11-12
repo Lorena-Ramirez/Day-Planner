@@ -106,7 +106,28 @@
           }
           hour++;
           }
-     
+          
+          else {
+            var className = $("#"+newHour).attr("class").split(' ').pop();
+            
+            if(className < time){
+            //past
+            $("#"+newHour).addClass("past");
+          }
+
+          else if(className > time){
+            //future
+            $("#"+newHour).addClass("future");
+          }
+          else{
+            //present
+            $("#"+newHour).addClass("present");
+          }
+
+          newHour++
+
+          }
+
         }
       }
       
