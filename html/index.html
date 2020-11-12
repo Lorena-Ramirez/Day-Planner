@@ -32,10 +32,12 @@
       //set and display current date
       var date = moment().format('dddd, ll');
       $("#currentDay").append(date);
-      var time = moment().format('LT'); 
+      var time = moment().format('HH'); 
       var hour = 9;
       var newHour = 1;
+      console.log(time);
 
+      var timeArray = ["09","10","11","12","13","14","15","16","17"];
       //create time blocks
       for (var i = 0; i < 9; i++) {
 
@@ -63,6 +65,7 @@
         if (hour < 13) {
           time.text(hour + ":00 AM");
           text.attr("id", hour);
+          text.addClass( timeArray[i]);
           button.attr("button-index", hour);
           hour++;
 
@@ -70,10 +73,22 @@
         else {
           time.text(newHour + ":00 PM");
           text.attr("id", newHour);
+          text.addClass("class", timeArray[i]);
           button.attr("button-index", newHour);
           newHour++;
         }
       }
+
+
+      //function to check time and change bloc background
+      // function checkTime(){
+      //  time = 
+
+
+      // }
+
+      //Check the time every hour
+      // setInterval(checkTime, 60*60*1000);
 
       //Save local storage to textarea
       var storage = localStorage;
@@ -82,7 +97,7 @@
       var eventNote = storage[event];
       $("#" + event).val(eventNote);
       });
-      
+
       $(".saveBtn").on("click", function (event) {
         var btnType = $(this).attr("button-index");
 
