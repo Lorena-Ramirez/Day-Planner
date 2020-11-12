@@ -79,6 +79,9 @@
       $(".saveBtn").on("click", function (event) {
         var btnType = $(this).attr("button-index");
 
+         //get the value of the textarea id number that matches the button index number
+         var description = $("#"+btnType).val();
+
       });
     });
 
