@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Work Day Scheduler</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</head>
+
+<body>
+  <header class="jumbotron">
+    <h1 class="display-3">Work Day Scheduler</h1>
+    <p class="lead">A simple calendar app for scheduling your work day</p>
+    <p id="currentDay" class="lead"></p>
+  </header>
+  <div class="container time-block">
+    <!-- Timeblocks go here -->
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      //set and display current date
+      var date = moment().format('dddd, ll');
+      $("#currentDay").append(date);
+      var time = moment().format('HH'); 
+      var hour = 9;
+      var newHour = 1;
+      var timeArray = ["09","10","11","12","13","14","15","16","17"];
+
+      //create time blocks
+      for (var i = 0; i < 9; i++) {
+
+        var row = $("<div>");
+        row.addClass("row");
+        $(".container").append(row);
+
+        var time = $("<div>");
+        time.addClass("col hour");
+        row.append(time);
+
+        var text = $("<textarea>");
+        text.addClass("col-10 description");
+        row.append(text);
+
+        var buttonCol = $("<div>");
+        buttonCol.addClass("col btn-col");
+        row.append(buttonCol);
+
+        var button = $("<button>");
+        button.addClass("saveBtn");
+        button.text("save");
+        buttonCol.append(button);
+
+        if (hour < 13) {
+          time.text(hour + ":00 AM");
+          text.attr("id", hour);
+          text.addClass( timeArray[i]);
+          button.attr("button-index", hour);
+          hour++;
+
+        }
+        else {
+          time.text(newHour + ":00 PM");
+          text.attr("id", newHour);
+          text.addClass(timeArray[i]);
+          button.attr("button-index", newHour);
+          newHour++;
+        }
+      }
+
+
+      //function to check time and change block background
+      function checkTime(){
+        var hour = 9;
+        var newHour = 1;
+        var time = moment().format('HH'); 
+        
+       //loop through each time block
+        for(var i = 0; i < 9; i++){
+         
+          if(hour < 13){
+          var className = $("#"+hour).attr("class").split(' ').pop();
+          
+          if(className < time){
+            //past
+            $("#"+hour).addClass("past");
+          }
+
+          else if(className > time){
+            //future
+            $("#"+hour).addClass("future");
+          }
+          else{
+            //present
+            $("#"+hour).addClass("present");
+          }
+          hour++;
+          }
+          
+          else {
+            var className = $("#"+newHour).attr("class").split(' ').pop();
+            
+            if(className < time){
+            //past
+            $("#"+newHour).addClass("past");
+          }
+
+          else if(className > time){
+            //future
+            $("#"+newHour).addClass("future");
+          }
+          else{
+            //present
+            $("#"+newHour).addClass("present");
+          }
+
+          newHour++
+
+          }
+
+        }
+      }
+      
+      //Check the time every hour
+      setInterval(checkTime, 60*60*1000);
+
+      //Save local storage to textarea
+      var storage = localStorage;
+      var eventsArray = Object.keys(storage);
+      eventsArray.map(event => {
+      var eventNote = storage[event];
+      $("#" + event).val(eventNote);
+      });
+
+      $(".saveBtn").on("click", function (event) {
+        var btnType = $(this).attr("button-index");
+
+         //get the value of the textarea id number that matches the button index number
+         var description = $("#"+btnType).val();
+
+        //save event description to specific event time
+        localStorage.setItem(btnType, description);
+      });
+      checkTime();
+      
+
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>
