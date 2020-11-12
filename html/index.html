@@ -36,7 +36,6 @@
       var hour = 9;
       var newHour = 1;
 
-
       //create time blocks
       for (var i = 0; i < 9; i++) {
 
@@ -75,6 +74,9 @@
           newHour++;
         }
       }
+
+      //Save local storage to textarea
+      var storage = localStorage;
 
       $(".saveBtn").on("click", function (event) {
         var btnType = $(this).attr("button-index");
