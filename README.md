@@ -2,7 +2,7 @@
 
 This project emphasizes the use of jQuery to create a dynamic html page. It also introduces the use of moments.js and how to implement the functions into variables to caputure current date and time.
 ## Main Functions
-*This application is a simple day planner that allows the user to log and save events during normal buisiness hours.
+* This application is a simple day planner that allows the user to log and save events during normal buisiness hours.
 
 ## Key features
 * Has color changing time blocks that utilize moments.js to determine whether a time block is in the past, present, or future.
@@ -12,8 +12,8 @@ This project emphasizes the use of jQuery to create a dynamic html page. It also
 *The above feature allows the events to stay logged on the webpage even when page is refreshed.
 
 **Day Planner**
-*Face of the day planner, without any events logged
-![Day Planner](.assets/images/dayplanner.png)
+* Face of the day planner, without any events logged
+![Day Planner](./assets/images/dayplanner.png)
 
 ## Link
 * Link to deployed application on github pages
