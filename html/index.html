@@ -78,7 +78,11 @@
       //Save local storage to textarea
       var storage = localStorage;
       var eventsArray = Object.keys(storage);
-
+      eventsArray.map(event => {
+      var eventNote = storage[event];
+      $("#" + event).val(eventNote);
+      });
+      
       $(".saveBtn").on("click", function (event) {
         var btnType = $(this).attr("button-index");
 
