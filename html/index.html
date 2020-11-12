@@ -32,57 +32,51 @@
       //set and display current date
       var date = moment().format('dddd, ll');
       $("#currentDay").append(date);
-
+      var time = moment().format('LT'); 
       var hour = 9;
       var newHour = 1;
 
+
       //create time blocks
-      for(var i = 0; i < 9; i++){
+      for (var i = 0; i < 9; i++) {
 
         var row = $("<div>");
         row.addClass("row");
         $(".container").append(row);
 
         var time = $("<div>");
-          time.addClass("col hour");
-          row.append(time);
+        time.addClass("col hour");
+        row.append(time);
 
         var text = $("<textarea>");
-          text.addClass("col-10 description");
-          row.append(text);
+        text.addClass("col-10 description");
+        row.append(text);
 
         var buttonCol = $("<div>");
-          buttonCol.addClass("col btn-col");
-          row.append(buttonCol);
+        buttonCol.addClass("col btn-col");
+        row.append(buttonCol);
 
-        var button= $("<button>");
-          button.addClass("saveBtn");
-          button.text("save");
-          buttonCol.append(button);
-        
-        if(hour < 13){
+        var button = $("<button>");
+        button.addClass("saveBtn");
+        button.text("save");
+        buttonCol.append(button);
+
+        if (hour < 13) {
           time.text(hour + ":00 AM");
-          text.attr("data-index",hour);
-          button.attr("button-index",hour);
+          text.attr("id", hour);
+          button.attr("button-index", hour);
           hour++;
 
         }
-        else{
+        else {
           time.text(newHour + ":00 PM");
-          text.attr("data-index",hour);
-          button.attr("button-index",hour);
+          text.attr("id", newHour);
+          button.attr("button-index", newHour);
           newHour++;
         }
       }
-     
-      
-      
-      
-      $(".saveBtn").on("click", function(event){
-        var btnType = $(this).attr("button-index");
-  
 
-      });
+    
 
     });
 
