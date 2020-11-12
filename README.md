@@ -17,4 +17,4 @@ This project emphasizes the use of jQuery to create a dynamic html page. It also
 
 ## Link
 * Link to deployed application on github pages
-[Day Planner]()
+[Day Planner](https://lorena-ramirez.github.io/Day-Planner/)
